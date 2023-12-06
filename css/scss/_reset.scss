@@ -1,0 +1,11 @@
+/* ==== poor reset ==== */
+
+* { margin: 0; padding: 0; border: 0; font-size: 100%; font-family: 'Open Sans', sans-serif; text-decoration: none; }
+*, *:before, *:after { box-sizing: border-box; }
+::-moz-selection { background: $colors_lightBlue; color: #FFF; text-shadow: none; }
+::selection { background: $colors_lightBlue; color: #FFF; text-shadow: none; }
+.clear { clear: both; }
+.clearfix { clear: both; }
+.clearfix:after { clear: both; content: ""; display: table; }
+a:hover, a:focus, div, input:focus { outline: none !important; }
+input { -webkit-appearance: none; -moz-appearance: none; appearance: none; }

@@ -1,0 +1,48 @@
+body { background: $colors_veryDarkBlue; font-size: 62.5%; }
+
+.hide { display: none; }
+
+.closeButton {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    z-index: 700;
+    mix-blend-mode: overlay;
+
+    &::before, &::after {
+        position: absolute;
+        left: 15px;
+        content: " ";
+        height: 33px;
+        width: 2px;
+        background-color: #FFF;
+    }
+
+    &::before { transform: rotate(45deg); }
+    &::after { transform: rotate(-45deg); }
+}
+
+.forLarge { display: none; }
+
+.errorBox {
+    background: #FCC;
+    color: #C33;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px;
+}
+
+
+@media screen and (min-width: $breakpoint_small) {
+
+    .closeButton::before, .closeButton::after {
+        height: 46px;
+        width: 3px;
+    }
+
+    .forLarge { display: block; }
+    .forSmall { display: none; }
+
+}

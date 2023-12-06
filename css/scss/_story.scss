@@ -1,0 +1,77 @@
+#storyContainer, .storyContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(1, 66, 106, 0.82);
+    z-index: 50;
+
+    .story {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        .storyInfo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            color: $colors_lightGray;
+            transition: font-size 0.3s;
+            font-size: 1rem;
+
+            .studentName {
+                font-size: 1.4em;
+                font-weight: 700;
+                font-family: $fonts_raleway;
+                color: #FFF;
+                padding-top: 12px;
+            }
+
+            .studentCollege { 
+                font-size: 1em;
+                font-weight: 300;
+                font-family: $fonts_raleway;
+            }
+
+            .studentPrompt {
+                font-size: 1em;
+                margin: 16px 6px;
+                color: #FFF;
+                border-top: 1px solid $colors_lightGray;
+                padding-top: 16px;
+            }
+
+            audio { width: 100%; }
+        }
+    }
+}
+
+
+@media screen and (min-width: $breakpoint_small) {
+
+    #storyContainer .story {
+
+        position: relative;
+        width: 90%;
+        margin: 0 auto;
+
+        .storyInfo { font-size: 1.3rem; }
+    }
+
+}
+
+
+@media screen and (min-width: $breakpoint_medium) {
+
+    #storyContainer .story { width: 80%; }
+
+}

@@ -1,0 +1,98 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: block;
+    width: 100%;
+
+    h1, .shareYourStory {
+
+        svg {
+            fill: $colors_lightGray;
+            width: 40px;
+            margin-top: -20px;
+            position: relative;
+            top: 10px;
+            transition: fill 0.4s ease-in-out;
+        }
+
+        a { 
+            display: block;
+            font-size: 1.2rem;
+            text-align: center;
+            background-color: $colors_darkBlue;
+            font-family: $fonts_raleway;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            font-weight: 300;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            transition: font-weight 0.4s ease-in-out,
+                        color 0.4s ease-in-out,
+                        letter-spacing 0.4s ease-in-out,
+                        background-color 0.4s ease-in-out;
+        }
+        a:link, a:visited { color: $colors_lightGray; }
+        a:hover, a:focus {
+            background-color: $colors_lightBlue;
+            color: #FFF;
+            font-weight: 900;
+            letter-spacing: 0.09rem;
+
+            svg { fill: #FFF; }
+        }
+    }
+
+    .shareYourStory {
+        position: fixed;
+        bottom: 0;
+        display: block;
+        width: 100%;
+
+        a { padding-top: 10px; }
+        svg { 
+            width: 20px;
+            margin-top: -3px;
+            top: 3px; 
+        }
+    }
+}
+
+
+@media screen and (min-width: $breakpoint_small) {
+    
+    header {
+        position: relative;
+        background-color: $colors_darkBlue;
+
+        h1 {
+    
+            a { 
+                float: left;
+                padding-top: 0; 
+                padding-left: 10px;
+                padding-right: 30px;
+                font-size: 1.3rem;
+            }
+
+            svg {
+                width: 60px;
+                top: 20px;
+            }
+        }
+
+        .shareYourStory {
+            position: relative;
+            
+            a { 
+                float: right; 
+                padding-left: 30px;
+                padding-right: 10px;
+                padding-top: 16px;
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+}

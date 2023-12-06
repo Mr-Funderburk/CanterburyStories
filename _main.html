@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Raleway:wght@100;300;500;700;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Raleway:wght@100;300;500;700;900&display=swap" media="print" onload="this.media='all'" /> 
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Raleway:wght@100;300;500;700;900&display=swap" /></noscript>
+
+    <link rel="stylesheet" href="css/canterbury_stories.css">
+
+    <link href="img/site/favicon.ico" rel="shortcut icon">
+    <link href="img/site/favicon.ico" rel="icon" type="image/x-icon">
+
+    <title>Cougar Alumni Stories from Canterbury School - Fort Myers, FL</title>
+</head>
+<body>
+    
+    <main>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Sarah Mitchell"
+                data-classof="2010"
+                data-src="2010_sarah_mitchell.jpg"
+                data-story="2010_sarah_mitchell"
+                data-prompt="Teachers that changed my life..."
+                data-college="Florida South Western University">
+                    <span class="loading"></span>
+                    <h3>Sarah Mitchell <span class="classOf">Class of 2010</span></h3>
+            </a>
+        </div>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Jennifer Smith"
+                data-classof="2011"
+                data-src="2011_jennifer_smith.jpg"
+                data-story="2011_jennifer_smith"
+                data-prompt="A moment I will never forget was..."
+                data-college="Ohio State University">
+                    <span class="loading"></span>
+                    <h3>Jennifer Smith <span class="classOf">Class of 2011</span></h3>
+            </a>
+        </div>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Brodrick Bellows"
+                data-classof="2015"
+                data-src="2015_brodrick_bellows.jpg"
+                data-story="2015_brodrick_bellows"
+                data-prompt="A funny moment I remember to this day was..."
+                data-college="University of South Florida">
+                    <span class="loading"></span>
+                    <h3>Brodrick Bellows <span class="classOf">Class of 2015</span></h3>
+            </a>
+        </div>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Janelle Brown"
+                data-classof="2015"
+                data-src="2015_janelle_brown.jpg"
+                data-story="2015_janelle_brown"
+                data-prompt="A typical day in my life at Canterbury was..."
+                data-college="Princeton">
+                    <span class="loading"></span>
+                    <h3>Janelle Brown <span class="classOf">Class of 2015</span></h3>
+            </a>
+        </div>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Callee Raey"
+                data-classof="2016"
+                data-src="2016_callee_raey.jpg"
+                data-story="2016_callee_raey"
+                data-prompt="An experience I had at Canterbury that impacted who I am today was..."
+                data-college="MIT">
+                    <span class="loading"></span>
+                    <h3>Callee Raey <span class="classOf">Class of 2016</span></h3>
+            </a>
+        </div>
+
+        <div class="studentStory">
+            <a class="lazy" href="javascript:void(0);"
+                data-student="Lillianna Marie"
+                data-classof="2018"
+                data-src="2018_lillianna_marie.jpg"
+                data-story="2018_lillianna_marie"
+                data-prompt="A field trip I will never forget was..."
+                data-college="Princeton">
+                    <span class="loading"></span>
+                    <h3>Lillianna Marie <span class="classOf">Class of 2018</span></h3>
+            </a>
+        </div>
+
+        <!-- Repeat for lazy loading testing -->
+
+    </main>
+
+    <footer>
+        <div class="tagline">
+            <p>Love Canterbury?</p>
+            <span data-text="Share Your">Share Your</span>
+            <span data-text="Story!">Story!</span>
+        </div>
+
+        <span class="copyright">Stories, associated images, the Canterbury Crest, and the Canterbury Torch are Copyright &copy; 2023-<span id="copyright_year"></span> Canterbury School, Fort Myers, FL</span>
+
+        <span class="icon_attribution">
+            <a href="attributions.htm" title="Icon Attributions">Click here for icon attributions.</a>
+        </span>
+    </footer>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script>
+        // lazy loading
+        $(function(){ $(".lazy").lazy({
+            imageBase: "img/stories/",
+            scrollDirection: "vertical",
+            effect: "fadeIn",
+            effectTime: 2000,
+            threshold: 0,
+            visibleOnly: true,
+            afterLoad: function(e) {
+                e.children("span.loading").hide();
+            },
+            onError: function(e) {
+                console.log("Error loading " + e.data("a"));
+            }
+            }); 
+        });
+    </script>
+</body>
+</html>

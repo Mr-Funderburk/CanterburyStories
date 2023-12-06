@@ -1,0 +1,203 @@
+main {
+    margin: 46px 0;
+
+    .studentStory { position: relative; }
+
+    .studentStory a {
+        display: block;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: 125%;
+        position: relative;
+        transition: background-size 0.4s;
+
+        &:hover, &:focus {
+            background-size: 100%;
+            box-shadow: inset 0 0 8px 1px #242629;
+        }
+
+        &:focus { border: 4px solid $colors_lightBlue; }
+    }
+
+    h3 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: $fonts_raleway;
+        color: #FFF;
+        letter-spacing: 0.05rem;
+        padding: 6px 16px;
+        background-color: rgba(0, 0, 0, 0.7);
+
+        span.classOf {
+            float: right;
+            font-size: 0.7rem;
+            font-weight: 300;
+            margin-top: 3px;
+            color: $colors_lightGray;
+        }
+    }
+
+    .loading {
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin-left: 16px;
+        border-radius: 50%;
+        background-color: #01426A;
+        box-shadow: 16px 0 #01426A, -16px 0 #01426A;
+        position: absolute;
+        top: 50%;
+        left: calc(50% - 16px);
+        animation: flash 1s ease-out infinite alternate;
+    }
+
+    @keyframes flash {
+        0% {
+            background-color: #3D90C3;
+            box-shadow: 16px 0 #3D90C3, -16px 0 #01426A;
+        }
+
+        50% {
+            background-color: #01426A;
+            box-shadow: 16px 0 #3D90C3, -16px 0 #3D90C3;
+        }
+        
+        100% {
+            background-color: #3D90C3;
+            box-shadow: 16px 0 #01426A, -16px 0 #3D90C3;
+        }
+    }
+}
+
+
+footer {
+    width: 100%;
+    padding-top: 26px;
+    color: $colors_lightGray;
+    text-align: center;
+    margin-top: 30px;
+
+    .tagline {
+        p {
+            font-size: 1.5rem;
+            font-family: $fonts_raleway;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        span {
+            font-size: 2.8rem;
+            font-family: $fonts_raleway;
+            font-weight: 900;
+            color: #FFF;
+            text-transform: uppercase;
+            line-height: 0.8;
+            text-align: center;
+            text-shadow: 3px 1px 1px $colors_lightBlue, 2px 2px 1px $colors_darkBlue, 4px 2px 1px $colors_lightBlue,
+                3px 3px 1px $colors_darkBlue, 5px 3px 1px $colors_lightBlue, 4px 4px 1px $colors_darkBlue,
+                6px 4px 1px $colors_lightBlue, 5px 5px 1px $colors_darkBlue, 7px 5px 1px $colors_lightBlue,
+                6px 6px 1px $colors_darkBlue, 8px 6px 1px $colors_lightBlue, 7px 7px 1px $colors_darkBlue,
+                9px 7px 1px $colors_lightBlue;
+            display: block;
+            position: relative;
+            transform: skew(0, -10deg);
+            z-index: 0;
+            margin: 10px;
+
+
+            &::before {
+                position: absolute;
+                content: attr(data-text);
+                text-shadow: 2px 2px 1px $colors_darkBlue, -1px -1px 1px $colors_darkBlue,
+                -2px 2px 1px $colors_darkBlue, 1px -1px 1px $colors_darkBlue;
+                z-index: 1;
+            }
+        }
+    }
+
+    .copyright {
+        display: block;
+        margin: 60px 30px 10px 30px;
+        color: $colors_darkGray;
+        font-size: 0.8rem;
+    }
+
+    .icon_attribution {
+        display: block;
+        margin-bottom: 60px;
+        color: $colors_darkGray;
+        
+        a:link, a:visited { color: $colors_darkGray; font-size: 0.8rem; }
+        a:hover, a:focus { color: #FFF; }
+    }
+}
+
+
+@media screen and (min-width: $breakpoint_small) {
+    main {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+
+        .studentStory {
+            width: 50%;
+
+            a { height: 200px; }
+        }
+    }
+
+    footer {
+        .icon_attribution { margin-bottom: 10px; }
+        .tagline {
+            p { font-size: 3em; margin-bottom: 50px; }
+            span { font-size: 6em; }
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint_medium) { 
+    main .studentStory { width: 33.33333333%; }
+
+    footer {
+        .icon_attribution { margin-bottom: 10px; }
+        .tagline {
+            p { font-size: 3.6em; margin-bottom: 50px; }
+            span { font-size: 6.6em; }
+        }
+        .copyright { margin-top: 100px; }
+    }
+
+}
+
+
+@media screen and (min-width: $breakpoint_large) { 
+    main .studentStory { 
+        width: 25%; 
+        a { 
+            height: 250px;
+        }
+
+        h3 { 
+            font-size: 1.4rem; 
+            span.classOf { font-size: 0.9rem; }
+        }
+    }
+
+    footer {
+        .copyright, .icon_attribution { font-size: 1.6em; margin-bottom: 10px; }
+        .tagline {
+            p { font-size: 5em; margin-bottom: 50px; }
+            span { font-size: 9em; }
+        }
+    }
+
+}
+
+
+
+#wrapper.overflow { height: 100vh; overflow: hidden; filter: blur(6px); }
