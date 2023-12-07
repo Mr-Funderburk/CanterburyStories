@@ -1,0 +1,84 @@
+* { margin: 0; padding: 0; border: 0; font-size: 100%; font-family: "Open Sans", sans-serif; text-decoration: none; }
+*, *:before, *:after { box-sizing: border-box; }
+::-moz-selection { background: #0272B8; color: #FFF; text-shadow: none; }
+::selection { background: #0272B8; color: #FFF; text-shadow: none; }
+.clear { clear: both; }
+.clearfix { clear: both; }
+.clearfix:after { clear: both; content: ""; display: table; }
+a:hover, a:focus, div, input:focus { outline: none !important; }
+
+body {
+    background-color: #242629;
+    color: #FFF;
+    font-size: 62.5%;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    border-bottom: 1px solid #FFF;
+    padding: 6px 32px;
+    margin: 16px;
+    letter-spacing: 1px;
+    font-variant: small-caps;
+    text-align: center
+}
+
+.attributions {
+
+
+    .attribution {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        margin: 30px 0;
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+        text-wrap: nowrap;
+        white-space: nowrap;
+        overflow: hidden;
+
+        h2 {
+            font-size: 1.4rem;
+            font-family: "Raleway", sans-serif;
+            font-weight: 300;
+        }
+
+        p { 
+            margin-left: 20px; 
+            color: #CCC;
+            text-overflow: ellipsis;
+        }
+
+        a:link, a:visited {
+            font-size: 0.8rem;
+            color: #3D90C3;
+            text-overflow: ellipsis;
+
+            &:hover, &:focus { color: lighten(#3D90C3, 30); }
+        }
+
+        svg {
+            width: 40px;
+            fill: #FFF;
+            margin-right: 20px;
+        }
+    }
+}
+
+
+@media screen and (min-width: 800px) {
+    h1 { font-size: 3rem; }
+    .attributions {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .attributions { grid-template-columns: auto auto auto; }
+}
