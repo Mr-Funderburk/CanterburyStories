@@ -159,6 +159,21 @@ footer {
             margin: 0 auto;
             margin-top: 20px;
         }
+
+        .socials {
+            margin-top: 40px;
+            
+            ul { list-style-type: none; }
+            li { display: inline-block; }
+            a:link, a:visited {
+                display: inline-block;
+                padding: 12px;
+                font-size: 1rem;
+                color: $colors_lightBlue;
+
+                &:hover, &:focus { color: $colors_highlightBlue }
+            }
+        }
     }
 }
 
