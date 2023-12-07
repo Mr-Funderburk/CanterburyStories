@@ -27,4 +27,8 @@ $(function(){
         $("#shareContainer").fadeOut("slow");
         $("#wrapper").toggleClass("overflow");
     });
+    
+    
+    // copyright year (current year)
+    $("#copyright_year").text(new Date().getFullYear());
 });

@@ -135,6 +135,31 @@ footer {
         a:link, a:visited { color: $colors_darkGray; font-size: 0.8rem; }
         a:hover, a:focus { color: #FFF; }
     }
+
+    .seal {
+        margin-top: 60px;
+
+        h2 {
+            font-family: $fonts_raleway;
+            font-weight: 300;
+            font-size: 1.4rem;
+            margin: 12px 32px;
+            color: #FFF;
+        }
+
+        p {
+            font-size: 1rem;
+            margin: 12px 32px;
+            color: #AAA;
+        }
+
+        img {
+            width: 60%; 
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
 }
 
 
@@ -156,6 +181,11 @@ footer {
         .tagline {
             p { font-size: 3em; margin-bottom: 50px; }
             span { font-size: 6em; }
+        }
+        .seal {
+            margin-top: 160px;
+            h2 { font-size: 2.5rem; }
+            p { font-size: 1.5rem; }
         }
     }
 }
