@@ -551,14 +551,17 @@
                     </div>
 
                     <span class="uploadFileName" id="upPhotoName"></span>
+                    <span class="hide" id="upPhotoExt"></span>
                     <div class="errorBox hide" id="upPhotoNameError"></div>
+
+                    <div id="infoError" class="errorBox hide"></div>
 
                     <a class="button" id="continueInfo" href="javascript:void(0);">Continue</a>
                 </div><!-- /student information -->
                 
                 <div class="inputContainer hide" id="pnlPrompts">
                     <div class="radio" id="promptOptions">
-                        <input type="radio" id="impacted" name="prompt" value="An experience I had at Canterbury that impacted who I am today was..." checked>
+                        <input type="radio" id="impacted" name="prompt" value="An experience I had at Canterbury that impacted who I am today was...">
                         <input type="radio" id="neverforget" name="prompt" value="A moment I will never forget was...">
                         <input type="radio" id="treasured" name="prompt" value="What I treasured most during my time at Canterbury was...">
                         <input type="radio" id="teacher" name="prompt" value="A teacher that changed my life was...">
@@ -573,6 +576,8 @@
                         <input type="text" id="txtOtherPrompt" name="txtOtherPrompt" placeholder="Other Prompt">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 14V12C22 11.161 22 10.4153 21.9871 9.75H2.0129C2 10.4153 2 11.161 2 12V14C2 17.7712 2 19.6569 3.17157 20.8284C4.34315 22 6.22876 22 10 22H14C17.7712 22 19.6569 22 20.8284 20.8284C22 19.6569 22 17.7712 22 14Z"/><path d="M7.75 2.5C7.75 2.08579 7.41421 1.75 7 1.75C6.58579 1.75 6.25 2.08579 6.25 2.5V4.07926C4.81067 4.19451 3.86577 4.47737 3.17157 5.17157C2.47737 5.86577 2.19451 6.81067 2.07926 8.25H21.9207C21.8055 6.81067 21.5226 5.86577 20.8284 5.17157C20.1342 4.47737 19.1893 4.19451 17.75 4.07926V2.5C17.75 2.08579 17.4142 1.75 17 1.75C16.5858 1.75 16.25 2.08579 16.25 2.5V4.0129C15.5847 4 14.839 4 14 4H10C9.16097 4 8.41527 4 7.75 4.0129V2.5Z"/></svg>
                     </div>
+
+                    <div id="promptError" class="errorBox hide"></div>
 
                     <a class="button" id="continuePrompt" href="javascript:void(0);">Continue</a>
                 </div><!-- /prompt -->
@@ -596,6 +601,7 @@
                         </div>
 
                         <span class="uploadFileName" id="upStoryName"></span>
+                        <span class="hide" id="upStoryExt"></span>
                         <div class="errorBox hide" id="upStoryNameError"></div>
                     </div>
 
@@ -621,7 +627,11 @@
                                 Please connect a microphone or allow this website to access your microphone and try again.
                             </div>
                         </div>
+
+                        <div id="recordingWarning" class="hide"><h2><span>WARNING</span>Recording</h2></div>
                     </div>
+
+                    <div id="storyError" class="errorBox hide"></div>
 
                     <a class="button" id="continueRecord" href="javascript:void(0);">Continue</a>
                 </div><!-- /record audio -->
@@ -631,21 +641,58 @@
                     <div class="storyContainer" id="previewStory">
                         <article class="story">
                             <div class="storyInfo">
-                                <div class="studentName"></div>
+                                <div class="studentName"><span id="previewName"></span> <span class="previewYear"></span></div>
                                 <div class="studentCollege"></div>
                                 <div class="studentPrompt"></div>
-                                <audio id="reviewAudio" controls></audio>
+                                <audio id="reviewAudio" controls>
+                                    <source id="reviewAudioSource" src="">
+                                    Your browser does not support HTML5 audio.
+                                </audio>
                             </div>
                         </article>
                     </div>
 
-                    <input type="submit" value="Submit Your Story" class="button">
+                    <!--input type="submit" value="Submit Your Story" class="button"-->
+                    <a href="javascript:void(0);" class="button" id="btnSubmit" onclick="sendStory()">Submit Your Story</a>
                 </div><!-- /review -->
 
                 <div class="spacer forSmall"><div class="buttonBackground"></div></div>
             </div>
 
         </form>
+
+        <div id="shareSuccess" class="hide">
+            <div class="share">
+                <h2>Thanks <span id="successName"></span>!</h2>
+                <h6>It's stories like yours that make Canterbury the special place that it is!</h6>
+                <p>Your story has been successfully submitted and will be reviewed by the Canterbury Staff. Stories are 
+                    usually updated weekly so check back soon to see your story!</p>
+                <p>If you have any questions, please contact the school.</p>
+                <a href="index.html" class="button">Continue</a>
+            </div>
+        </div>
+
+        <div id="shareError" class="hide">
+            <div class="share">
+                <h2>Oh No!</h2>
+                <p>
+                    We encountered an error processing your story. Please try again in a few minutes. If the problem persists,
+                    please email the school with the below message.
+                </p>
+                <blockquote class="errorBox">
+                    Failed to send alumni story.<br>
+                    Error Message: <span id="shareErrorMessage"></span><br><br>
+                    Alumni Name: <span id="shareErrorName"></span><br>
+                    Alumni Email: <span id="shareErrorEmail"></span><br>
+                    Alumni Year: <span id="shareErrorYear"></span><br>
+                    Alumni College: <span id="shareErrorCollege"></span><br>
+                    Alumni Photo: <span id="shareErrorPhoto"></span><br>
+                    Alumni Prompt: <span id="shareErrorPrompt"></span><br>
+                    Alumni Story: <span id="shareErrorStory"></span>
+                </blockquote>
+                <a href="index.html" class="button">Continue</a>
+            </div>
+        </div>
 
     </div><!-- /STORY MODAL -->
 
@@ -656,6 +703,5 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/share.js"></script>
     <script type="text/javascript" src="js/story.js"></script>
-    <script type="text/javascript" src="js/sendStory.js"></script>
 </body>
 </html>

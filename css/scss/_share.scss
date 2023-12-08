@@ -8,6 +8,27 @@
     z-index: 200;
     overflow-y: auto;
 
+    &.recording { background: rgba(204,51,51, 0.82); }
+    #recordingWarning {
+        background: #FCC;
+        position: absolute;
+        bottom: 0;
+        padding: 30px;
+        width: 100%;
+        z-index: 300;
+
+        h2 { 
+            color: #C33 !important; 
+            border-color: #C33 !important; 
+
+            span { 
+                display: block;
+                font-size: 0.7rem !important;
+                letter-spacing: 0.2rem !important;
+            }
+        }
+    }
+
     .share {
         
         h2 {
@@ -87,6 +108,15 @@
             background-size: 200%;
         }
     }
+
+    #shareSuccess p, #shareError p { font-size: 1rem; color: $colors_lightGray; margin: 12px; }
+    #shareSuccess h6, #shareError h6 {
+        font-size: 1.8rem;
+        font-family: $fonts_raleway;
+        font-weight: 300;
+        color: lighten($colors_highlightBlue, 30);
+        text-align: center;
+    }
 }
 
 
@@ -105,6 +135,14 @@
             background-size: cover;
         }
         
+        #recordingWarning { 
+            position: relative; 
+            border-radius: 8px; 
+
+        }
     }
-    
+
+    #shareContainer #shareSuccess, #shareContainer #shareError { margin: 0 32px; }
+    #shareContainer .errorBox { border-radius: 8px; }
+    #shareSuccess h6 { font-size: 2.2rem; }
 }

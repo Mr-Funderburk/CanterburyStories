@@ -10,6 +10,7 @@
     font-size: 1rem;
 
     &:hover, &:focus { border-color: $colors_highlightBlue; }
+    &.error { border-color: #C33; }
 
     input {
         background: none !important;
