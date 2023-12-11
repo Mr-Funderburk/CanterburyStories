@@ -172,6 +172,43 @@ footer {
                 color: $colors_lightBlue;
 
                 &:hover, &:focus { color: $colors_highlightBlue }
+                svg { width: 30px; }
+
+                &.twitter { 
+                    color: #1DA1F2; 
+                    svg { fill: #1DA1F2; }
+                    &:hover, &:focus { 
+                        color: lighten(#1DA1F2, 30); 
+                        svg { fill: lighten(#1DA1F2, 30); }
+                    }
+                }
+
+                &.facebook { 
+                    color: #4267B2; 
+                    svg { fill: #4267B2; }
+                    &:hover, &:focus { 
+                        color: lighten(#4267B2, 30); 
+                        svg { fill: lighten(#4267B2, 30); }
+                    }
+                }
+
+                &.instagram { 
+                    color: #C13584; 
+                    svg { fill: #C13584; }
+                    &:hover, &:focus { 
+                        color: lighten(#C13584, 30); 
+                        svg { fill: lighten(#C13584, 30); }
+                    }
+                }
+
+                &.vimeo { 
+                    color: #86C9EF; 
+                    svg { fill: #86C9EF; }
+                    &:hover, &:focus { 
+                        color: lighten(#86C9EF, 30); 
+                        svg { fill: lighten(#86C9EF, 30); }
+                    }
+                }
             }
         }
     }
