@@ -1,5 +1,10 @@
 var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-var canRecord = true;
+var isRecording = false;
+var mediaRecorder;
+var audioChunks = [];
+var canDrag = false;
+var droppedPhoto = false;
+var droppedAudio = false;
 
 var alumnus = {
     name: "",
@@ -13,7 +18,14 @@ var alumnus = {
     storyUri: ""
 };
 
-$(document).ready(function() {
+$(document).ready(function(){
+    // feature detection
+    canDrag = function(){
+        var div = document.createElement("div");
+        return(("draggable" in div) || ("ondragstart" in div && "ondrop" in div)) &&
+            "FormData" in window && "FileReader" in window;
+    }();
+
     // student's name
     $("#txtName").change(function(){ 
         if ($(this).val().trim() != "") { 
@@ -60,10 +72,36 @@ $(document).ready(function() {
         }
     });
 
+    if (canDrag) {
+        $(".uploadBox .supportsDrag").show();
+        $(".uploadBox")
+            .on("drag dragstart dragend dragover dragenter dragleave drop", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            })
+            .on("dragover dragenter", function(){
+                $(".uploadBox label").addClass("drag");
+            })
+            .on("dragleave dragend drop", function(){
+                $(".uploadBox label").removeClass("drag");
+            })
+            .on("drop", function(e){
+                if ($(this).find("#upPhoto").length > 0) {
+                    doPhoto(e.originalEvent.dataTransfer.files[0]);
+                } else {
+                    doAudio(e.originalEvent.dataTransfer.files[0]);
+                }
+            });
+    }
+
     // student's photo
     $("#upPhoto").change(function(e){
+        doPhoto(e.target.files[0]);
+    });
+
+    function doPhoto(file) {
         var allowedPhotoExtensions = /(\.jpg|\.jpeg|\.png)$/i;
-        var fileName = e.target.files[0].name;
+        var fileName = file.name;
 
         if (!allowedPhotoExtensions.exec(fileName)) {
             $("#upPhoto").value = "";
@@ -74,7 +112,7 @@ $(document).ready(function() {
             $("#upPhotoExt").text(fileName.substring(fileName.lastIndexOf(".")));
             $("#upPhotoNameError").hide();
             $("#upPhotoNameError").html("");
-            alumnus.photo = e.target.files[0];
+            alumnus.photo = file;
             let reader = new FileReader();
             reader.onload = function(f){
                 $("#previewStory .story").css("background-image", "url(" + f.target.result + ")");
@@ -88,7 +126,7 @@ $(document).ready(function() {
                 alumnus.photoUri = "data:" + alumnus.photo.type + ";base64," + btoa(readerUri.result);
             }
         }
-    });
+    }
 
     // student's prompt
     $("#promptOptions input").change(function(){
@@ -132,14 +170,17 @@ $(document).ready(function() {
     });
 
     $("#btnRecord").click(function(){
-        if (canRecord){
-            if ($("#btnRecord span").text() == "Record") {
+        if (!$(this).hasClass("disabled")){
+            if (!isRecording){ 
+                mediaRecorder.start(); 
                 $("#btnRecord span").text("Stop");
                 $("#btnRecord .recordIcon").hide();
                 $("#btnRecord .stopIcon").show();
                 $("#shareContainer").addClass("recording");
                 $("#recordingWarning").show();
             } else {
+                mediaRecorder.stop();
+                isRecording = false;
                 $("#btnRecord span").text("Record");
                 $("#btnRecord .recordIcon").show();
                 $("#btnRecord .stopIcon").hide();
@@ -150,8 +191,12 @@ $(document).ready(function() {
     });
 
     $("#upStory").change(function(e){
+        doAudio(e.target.files[0]);
+    });
+
+    function doAudio(file){
         var allowedStoryExtensions = /(\.mp3|\.ogg)$/i;
-        var fileName = e.target.files[0].name;
+        var fileName = file.name;
 
         if (!allowedStoryExtensions.exec(fileName)){
             $("#upStory").value = "";
@@ -162,7 +207,7 @@ $(document).ready(function() {
             $("#upStoryExt").text(fileName.substring(fileName.lastIndexOf(".")));
             $("#upStoryNameError").hide();
             $("#upStoryNameError").html("");
-            alumnus.story = e.target.files[0];
+            alumnus.story = file;
             $("#reviewAudioSource").attr("src", URL.createObjectURL(alumnus.story))
             $("#reviewAudio").load();
 
@@ -173,7 +218,7 @@ $(document).ready(function() {
                 alumnus.storyUri = "data:" + alumnus.story.type + ";base64," + btoa(readerUri.result);
             }
         }
-    });
+    }
 
     //#region Progress Switching
     // ========== progress switching
@@ -221,6 +266,34 @@ $(document).ready(function() {
     //#endregion
 });
 
+navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(function(stream){
+        canRecord = true;
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = function(e){
+            if (e.data.size > 0){
+                audioChunks.push(e.data);
+            }
+        };
+
+        mediaRecorder.onstop = function(){
+            const audioBlob = new Blob(audioChunks, { type: "audio/ogg"});
+            $("#audioPreviewSource").attr("src", URL.createObjectURL(audioBlob));
+            
+        };
+
+        mediaRecorder.onstart = function(){
+            isRecording = true;
+            audioChunks = [];
+        };
+    })
+    .catch(function(e){
+        console.error("ERROR recording audio:", e);
+        $(".recordError").show();
+        $("#btnRecord").addClass("disabled");
+        $("#btnPlay").addClass("disabled");
+    });
 
 //#region Send Email
 
@@ -302,12 +375,11 @@ function validateInfo(){
     $("#infoError").hide();
     errorMsg = "<ul>";
 
-    if ($("#txtName").val().trim() == "") { errorMsg += "<li>Your name is required.</li>"; }
-    if ($("#txtEmail").val().trim() == "") { errorMsg += "<li>Your email is required.</li>"; }
-    if ($("#txtGradYear").val().trim() == "") { errorMsg += "<li>Your graduation year is required.</li>"; }
-    if ($("#txtCollege").val().trim() == "") { errorMsg += "<li>The college you attended/are attending is required.</li>"; }
-    var photo = $("#upPhoto").get(0).files[0];
-    if (!photo){ errorMsg += "<li>A photo of you is required.</li>"; }
+    if (alumnus.name == "") { errorMsg += "<li>Your name is required.</li>"; }
+    if (alumnus.email == "") { errorMsg += "<li>Your email is required.</li>"; }
+    if (alumnus.year == "") { errorMsg += "<li>Your graduation year is required.</li>"; }
+    if (alumnus.college == "") { errorMsg += "<li>The college you attended/are attending is required.</li>"; }
+    if (alumnus.photo == ""){ errorMsg += "<li>A photo of you is required.</li>"; }
 
     if (errorMsg != "<ul>") { 
         errorMsg += "</ul>"
@@ -344,7 +416,7 @@ function validatePrompt(){
 }
 
 function validateStory(){ // TODO: This validation doesn't work!
-    if (!$("#upStory").get(0).files[0] && $("#audioPreview").src == ""){
+    if (alumnus.story = ""){
         $("#storyError").show();
         $("#storyError").text("You must upload or record a story.");
         progressClear();

@@ -478,6 +478,7 @@
 
     <!-- STORY MODAL -->
     <div id="storyContainer" class="hide">
+        <div class="modalbg"></div>
 
         <a href="javascript:void(0);" id="closeStory" class="closeButton"></a>
 
@@ -499,7 +500,7 @@
     </div><!-- /STORY MODAL -->
 
 
-    <!-- STORY MODAL -->
+    <!-- SHARE MODAL -->
     <div id="shareContainer" class="hide">
 
         <a href="javascript:void(0);" id="closeShare" class="closeButton"></a>
@@ -608,7 +609,7 @@
                             <label for="upStory">
                                 <svg viewBox="0 -1.5 35 35" xmlns="http://www.w3.org/2000/svg"><path d="M29.426 15.535c0 0 0.649-8.743-7.361-9.74-6.865-0.701-8.955 5.679-8.955 5.679s-2.067-1.988-4.872-0.364c-2.511 1.55-2.067 4.388-2.067 4.388s-5.576 1.084-5.576 6.768c0.124 5.677 6.054 5.734 6.054 5.734h9.351v-6h-3l5-5 5 5h-3v6h8.467c0 0 5.52 0.006 6.295-5.395 0.369-5.906-5.336-7.070-5.336-7.070z"></path></svg>
                                 <span class="forSmall">Tap here to upload your story.</span>
-                                <span class="forLarge"><strong>Choose an audio file</strong> <span>or drag it here</span>.</span>
+                                <span class="forLarge"><strong>Choose an audio file</strong><span class="supportsDrag hide"> or drag it here</span>.</span>
                             </label>
                         </div>
 
@@ -630,7 +631,9 @@
                             <svg viewBox="-3 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-419.000000, -571.000000)"><path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554"></path></g></svg>
                             Play
                         </a>
-                        <audio id="audioPreview" class="hide"></audio>
+                        <audio id="audioPreview" class=""> <!--TODO: Hide this - The play button should play/stop this-->
+                            <source id="audioPreviewSource" src="" type="audio/ogg">
+                        </audio>
 
                         <div class="recordError hide">
                             <p>&nbsp;</p>
@@ -706,7 +709,7 @@
             </div>
         </div>
 
-    </div><!-- /STORY MODAL -->
+    </div><!-- /SHARE MODAL -->
 
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>

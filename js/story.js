@@ -36,6 +36,13 @@ $(function(){
         $("#storyContainer").fadeOut("slow");
     });
 
+    $(".modalbg").click(function(){
+        var audio = $("#storyAudio")[0];
+        if ($("#storyAudio").is(":visible")) { audio.pause(); }
+        $("#wrapper").toggleClass("overflow");
+        $("#storyContainer").fadeOut("slow");
+    });
+
 
     $(document).on("keydown", function(event) {
         if (event.key == "Escape") {
