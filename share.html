@@ -72,109 +72,183 @@
     </div>
 
     <div class="contentContainer">
-        <main class="content">
-            <div id="filter" class="inputContainer">
-                <h2>Filter Stories</h2>
-                <p>Show me stories from</p>
-                <div class="radio radioHorizontal" id="filterStakeholder">
-                    <input type="radio" id="filter_stakeholder_any" name="stakeholder" value="Anyone" checked>
-                    <input type="radio" id="filter_stakeholder_alumni" name="stakeholder" value="Alumni">
-                    <input type="radio" id="filter_stakeholder_parent" name="stakeholder" value="Parent">
-                    <input type="radio" id="filter_stakeholder_faculty" name="stakeholder" value="Faculty">
-                </div>
-                
-                <div class="flex" style="display: none;" id="filterFromClassOf">
-                    <p>From the class of</p>
-                    <input type="number" id="filter_classof" style="width: 150px;">
-                </div>
+        <ul id="progress">
+            <li class="active">Your Info</li>
+            <li>Prompts</li>
+            <li>Your Story</li>
+            <li>Review</li>
+        </ul>
 
-                <p>Show me stories with the prompt</p>
-                <div class="radio" id="filterPrompts">
-                    <input type="radio" id="filter_prompt_any" name="prompt" value="Any prompt" checked>
-                    <input type="radio" id="filter_prompt_impacted" name="prompt" value="An experience I had at Canterbury that impacted who I am today was...">
-                    <input type="radio" id="filter_prompt_neverforget" name="prompt" value="A moment I will never forget was...">
-                    <input type="radio" id="filter_prompt_treasured" name="prompt" value="What I treasured most during my time at Canterbury was...">
-                    <input type="radio" id="filter_prompt_teacher" name="prompt" value="A teacher that changed my life was...">
-                    <input type="radio" id="filter_prompt_fieldtrip" name="prompt" value="A field trip I will never forget was...">
-                    <input type="radio" id="filter_prompt_typicalday" name="prompt" value="A typical day in my life at Canterbury was...">
-                    <input type="radio" id="filter_prompt_extracurricular" name="prompt" value="An extracurricular activity that I loved at Canterbury was...">
-                    <input type="radio" id="filter_prompt_funny" name="prompt" value="A funny moment I remember to this day was...">
-                    <input type="radio" id="filter_prompt_other" name="prompt" value="Other">
-                </div>
+        <div id="pnlInfo" class="inputContainer shareYourStory">
+            <h2>Your Information</h2>
 
-                <p>Show first</p>
-                <div class="radio radioHorizontal" id="filterSortby">
-                    <input type="radio" id="filter_newest" name="sortby" value="Newest" checked>
-                    <input type="radio" id="filter_oldest" name="sortby" value="Oldest">
-                </div>
+            <p><label for="share_name">Full Name</label></p>
+            <input type="text" id="share_name">
+            <span class="errorText" id="shareNameError">* Your name is required</span>
 
-                <div class="flex">
-                    <a href="index_v2.html" class="cancelButton">Cancel</a>
-                    <a href="javascript:void(0);" id="btnFilterStories" class="submitButton blueButton">Filter Stories</a>
-                </div>
+            <p><label for="share_email">Email</label></p>
+            <input type="email" id="share_email">
+            <span class="errorText" id="shareEmailError">* Your email is required</span>
+
+            <p><label for="share_stakeholder">Type</label></p>
+            <div class="radio radioHorizontal" id="shareStakeholder">
+                <input type="radio" id="share_stakeholder_alumni" name="stakeholder" value="Alumni" checked>
+                <input type="radio" id="share_stakeholder_parent" name="stakeholder" value="Parent">
+                <input type="radio" id="share_stakeholder_faculty" name="stakeholder" value="Faculty">
             </div>
 
-            <div id="search" class="inputContainer">
-                <h2>Search Stories</h2>
-                <p>Search first or last name</p>
-                <input type="text" id="search_name">
+            <div id="shareGradYear">
+                <p><label for="share_gradYear">Graduation Year</label></p>
+                <input type="text" id="share_gradYear" min="1800">
+                <span class="errorText" id="shareGradYearError">* Your graduation year is required</span>
+            </div>
 
-                <div class="flex">
-                    <a href="index_v2.html" class="cancelButton">Cancel</a>
-                    <a href="javascript:void(0);" id="btnSearchStories" class="submitButton blueButton">Search Stories</a>
+            <p>Photo</p>
+            <p class="note" style="margin-top: -5px;">Accepted file types are .jpg and .png</p>
+
+            <div class="uploadContainer">
+                <div class="fileDropArea" id="photoFile">
+                    <span class="chooseBtn">Choose File</span>
+                    <span class="dropMsg" id="upPhotoName">Or drop files here</span>
+                    <input type="file" id="upPhoto">
+                    <div class="deleteFile"></div>
+                    <div class="uploadError" id="upPhotoError">Unsupported file format!</div>
                 </div>
             </div>
+            <span class="errorText" id="sharePhotoError">* Your photo is required</span>
+            <div id="upPhotoExt" style="display: none;"></div>
 
-            <div class="flexbreak"></div>
-            
-            <div id="stories"></div>
+            <div class="flex">
+                <a href="javascript:void(0);" id="btnShareInfo" class="submitButton continue">Continue</a>
+            </div>
+        </div>
 
-            <div id="noResults">
-                <h2>No Results</h2>
-                <p>Try a different filter or <a href="index_v2.html">see all of our stories</a>.</p>
-                <p>Think we missed something? <a href="#">Let us know!</a></p>
+        <div id="pnlPrompts" class="inputContainer shareYourStory">
+            <h2>Prompts</h2>
+
+            <div class="radio" id="prompts">
+                <input type="radio" id="prompt_impacted" name="prompt" value="An experience I had at Canterbury that impacted who I am today was..." checked>
+                <input type="radio" id="prompt_neverforget" name="prompt" value="A moment I will never forget was...">
+                <input type="radio" id="prompt_treasured" name="prompt" value="What I treasured most during my time at Canterbury was...">
+                <input type="radio" id="prompt_teacher" name="prompt" value="A teacher that changed my life was...">
+                <input type="radio" id="prompt_fieldtrip" name="prompt" value="A field trip I will never forget was...">
+                <input type="radio" id="prompt_typicalday" name="prompt" value="A typical day in my life at Canterbury was...">
+                <input type="radio" id="prompt_extracurricular" name="prompt" value="An extracurricular activity that I loved at Canterbury was...">
+                <input type="radio" id="prompt_funny" name="prompt" value="A funny moment I remember to this day was...">
+                <input type="radio" id="prompt_other" name="prompt" value="Other">
             </div>
 
-            <div class="flexbreak"></div>
-            
-            <footer>
-                <div class="copyright"><p>Stories, associated images, the Canterbury Crest, and the Canterbury Torch are Copyright &copy; 2024 Canterbury School, Fort Myers, FL</p></div>
-                <div class="attributions"><p><a href="#">Click here for icon attributions.</a></p></div>
-                <div class="cookies">
-                    <input type="checkbox" id="cookiesDisclaimer" name="cookiesDisclaimer">
-                    <label for="cookiesDisclaimer" class="cookiesDisclaimerButton"><p>Cookies &amp; Privacy Policies</p></label>
-                    <div class="disclaimer">
-                        <h6>Cookies</h6>
-                        <p>This website uses cookies <em>only</em> to keep track of your pinned preference for the sidebar.</p>
+            <div id="pnlPromptOther" style="display: none;">
+                <p><label for="promptOther">Other</label></p>
+                <input type="text" name="promptOther" id="promptOther">
+                <span class="errorText" id="promptOtherError">A custom prompt is required when selecting "Other"</span>
+            </div>
 
-                        <h6>Privacy</h6>
-                        <p>By submitting your story, you give permission for Canterbury School to use your picture and story in any fashion they see fit. This may include, but is not limited to, advertising, fundraising, campaigning, etc.</p>
-                        <p>If you would like your story removed, please contact Canterbury School, Fort Myers, FL.</p>
+
+            <div class="flex">
+                <a href="javascript:void(0);" id="btnSharePromptsBack" class="cancelButton previous">Previous</a>
+                <a href="javascript:void(0);" id="btnSharePrompts" class="submitButton continue">Continue</a>
+            </div>
+        </div>
+
+        <div id="pnlStory" class="inputContainer shareYourStory">
+            <h2>Your Story</h2>
+
+            <div class="radio radioHorizontal" id="shareStoryType">
+                <input type="radio" id="share_story_type_upload" name="storyType" value="Upload" checked>
+                <input type="radio" id="share_story_type_record" name="storyType" value="Record">
+            </div>
+
+            <div id="pnlShareUpload">
+                <p class="note">Accepted file types are .mp3 and .ogg</p>
+
+                <div class="uploadContainer">
+                    <div class="fileDropArea" id="storyFile">
+                        <span class="chooseBtn">Choose File</span>
+                        <span class="dropMsg" id="upStoryName">Or drop files here</span>
+                        <input type="file" id="upStory">
+                        <div class="deleteFile"></div>
+                        <div class="uploadError" id="upStoryError">Unsupported file format!</div>
                     </div>
                 </div>
-            </footer>
-        </main>
 
-        <div class="storyCover"></div>
-        <div id="story">
-            <a href="javascript:void(0);" id="closeStory" class="closeButton"></a>
-            <div id="stakeholder"></div>
-            <div class="storyInfo">
-                <div id="storyError"> </div>
-                <button id="storyPlay"></button>
-                <audio controls id="storyAudio" style="display: none;">
-                    <source id="oggSource" src="" type="audio/ogg">
-                </audio>
-                <h2 id="name"></h2>
-                <p id="prompt"></p>
+                <div id="upStoryExt" style="display: none;"></div>
             </div>
+
+            <div id="pnlShareRecord" style="display: none;">
+                <p class="note">Record your story by pressing the Record button below. Press Stop when you are finished. You can press Play afterwards to hear your story. If you would like to re-record, simply press Record again.</p>
+
+                <a id="btnRecord" href="javascript:void(0);" class="cancelButton blueButton"><svg id="recordIcon" viewBox="-5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><g><g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-107.000000, -309.000000)"><path d="M118,333 C121.866,333 125,329.866 125,326 L125,316 C125,312.134 121.866,309 118,309 C114.134,309 111,312.134 111,316 L111,326 C111,329.866 114.134,333 118,333 L118,333 Z M129,328 L127,328 C126.089,332.007 122.282,335 118,335 C113.718,335 109.911,332.007 109,328 L107,328 C107.883,332.799 112.063,336.51 117,336.955 L117,339 L116,339 C115.448,339 115,339.448 115,340 C115,340.553 115.448,341 116,341 L120,341 C120.552,341 121,340.553 121,340 C121,339.448 120.552,339 120,339 L119,339 L119,336.955 C123.937,336.51 128.117,332.799 129,328 L129,328 Z" sketch:type="MSShapeGroup"></path></g></g></svg><svg id="stopIcon" style="display: none;" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h16.128q0.832 0 1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-16.128q-0.832 0-1.44 0.576t-0.576 1.44v16.16z"></path></svg><span>Record</span></a>
+                <a id="btnPlay" href="javascript:void(0);" class="cancelButton blueButton"><svg id="playIcon" viewBox="-3 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-419.000000, -571.000000)"><path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554"></path></g></svg>Play</a>
+
+                <span id="recordError" class="errorText">No microphone was detected on your computer or the permissions to use the microphone were denied. Please connect a microphone or allow this website to access your microphone and try again.</span>
+            </div>
+
+            <div id="shareError"></div>
+
+            <div class="flex">
+                <a href="javascript:void(0);" id="btnShareStoryBack" class="cancelButton previous">Previous</a>
+                <a href="javascript:void(0);" id="btnShareStory" class="submitButton continue">Continue</a>
+            </div>
+        </div>
+
+        <div id="pnlReview" class="inputContainer shareYourStory">
+            <h2>Review</h2>
+            <p class="note">Note: This is only an approximation of how your post will look. Actual appearance may differ.</p>
+
+            <div id="story" class="preview">
+                <div id="stakeholder"></div>
+                <div class="storyInfo">
+                    <div id="storyError"> </div>
+                    <button id="storyPlay"></button>
+                    <audio controls id="storyAudio" style="display: none;">
+                        <source id="oggSource" src="" type="audio/ogg">
+                        <source id="mp3Source" src="" type="audio/mp3">
+                    </audio>
+                    <h2 id="name"></h2>
+                    <p id="prompt"></p>
+                </div>
+            </div>
+
+            <div class="flex">
+                <a href="javascript:void(0);" id="btnShareReviewBack" class="cancelButton previous">Previous</a>
+                <a href="javascript:void(0);" id="btnShareReview" class="submitButton" onclick="sendStory()">Submit</a>
+            </div>
+        </div>
+
+        <div id="pnlSending" class="inputContainer shareYourStory">
+            <h2>Sending...</h2>
+            <p>Your story is being sent. Please do not refresh the page or navigate away from this page.</p>
+            <div class="loader"></div>
+        </div>
+
+        <div id="pnlSuccess" class="inputContainer shareYourStory">
+            <h2>Success!</h2>
+            <p>Thank you <span id="successName"></span> for your contribution to Canterbury Stories!</p>
+            <p>Your story has been successfully submitted. Your story will be reviewed and then added to the Canterbury Stories website. Check back soon!</p>
+
+            <p><a href="index_v2.html">Hear more stories from Canterbury</a></p>
+        </div>
+
+        <div id="pnlError" class="inputContainer shareYourStory">
+            <h2>Uh oh!</h2>
+            <p>Something went wrong while processing the submission of your story. Please try again in a few minutes. If the problem persists, please let us know and give us the error below.</p>
+            <div id="submitErrorMessage"></div>
+        </div>
+
+        <div id="recordingWarning">
+            <span>Warning</span>
+            <strong>Recording</strong>
+            <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M30.555 25.219l-12.519-21.436c-1.044-1.044-2.738-1.044-3.782 0l-12.52 21.436c-1.044 1.043-1.044 2.736 0 3.781h28.82c1.046-1.045 1.046-2.738 0.001-3.781zM14.992 11.478c0-0.829 0.672-1.5 1.5-1.5s1.5 0.671 1.5 1.5v7c0 0.828-0.672 1.5-1.5 1.5s-1.5-0.672-1.5-1.5v-7zM16.501 24.986c-0.828 0-1.5-0.67-1.5-1.5 0-0.828 0.672-1.5 1.5-1.5s1.5 0.672 1.5 1.5c0 0.83-0.672 1.5-1.5 1.5z"></path></svg>
         </div>
     </div>
 
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://smtpjs.com/v3/smtp.js"></script>
     <script type="text/javascript" src="js/storyData.js"></script>
     <script type="text/javascript" src="js/story_v2.js"></script>
+    <script type="text/javascript" src="js/share_v2.js"></script>
     <script>
         $(function(){
             // cookies
@@ -188,10 +262,10 @@
             function getCookie(cname) {
                 let name = cname + "=";
                 let decodedCookie = decodeURIComponent(document.cookie);
-                let ca = decodedCookie.split(';');
+                let ca = decodedCookie.split(";");
                 for(let i = 0; i < ca.length; i++) {
                     let c = ca[i];
-                    while (c.charAt(0) == ' ') { c = c.substring(1); }
+                    while (c.charAt(0) == " ") { c = c.substring(1); }
                     if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
                 }
                 return "";
@@ -204,6 +278,47 @@
 
             $("#pinSidebar").change(function(){ setCookie("pinned", this.checked, 60); });
             checkPinned();
+
+
+
+            // file uploads
+            // const $fileInput = $(".fileDropArea input");
+            // const $droparea = $(".fileDropArea");
+            // const $delete = $(".deleteFile");
+
+            // $fileInput.on("dragenter focus click", function () {
+            //     $droparea.addClass("active");
+            // });
+
+            // $fileInput.on("dragleave blur drop", function () {
+            //     $droparea.removeClass("active");
+            // });
+
+            // $fileInput.on("change", function () {
+            //     let filesCount = $(this)[0].files.length;
+            //     let $textContainer = $(this).prev();
+
+            //     if (filesCount === 1) {
+            //         let fileName = $(this).val().split("\\").pop();
+            //         $textContainer.text(fileName);
+            //         $delete.css("display", "inline-block");
+            //     } else if (filesCount === 0) {
+            //         $textContainer.text("or drop files here");
+            //         $delete.css("display", "none");
+            //     } else {
+            //         $textContainer.text(filesCount + " files selected");
+            //         $delete.css("display", "inline-block");
+            //     }
+            // });
+
+            // $delete.on("click", function () {
+            //     $fileInput.val(null);
+            //     $(".dropMsg").text("or drop files here");
+            //     $delete.css("display", "none");
+            // });
+
+
+
         });
     </script>
 </body>

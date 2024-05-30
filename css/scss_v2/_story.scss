@@ -1,0 +1,145 @@
+.storyCover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 66, 106, 0.4);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    overflow: hidden;
+    z-index: 300;
+    transition: top 0.6s ease-in-out;
+}
+.storyCover.open { top: 0; }
+
+#story.open { bottom: 0; height: 100vh; max-height: 100vh; }
+#story {
+    display: block;
+    width: 100%;
+    height: 0;
+    max-height: 0;
+
+    //background-image: url("../img/stories/senior-portrait-female.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    overflow: hidden;
+    z-index: 300;
+    transition: bottom 0.6s ease-in-out, height 0.6s linear, max-height 0.6s linear;
+
+    #stakeholder {
+        width: 100vh;
+        height: 60px;
+        line-height: 60px;
+        transform: rotate(90deg);
+        transform-origin: top left;
+        margin-left: 60px;
+        padding-left: 100px;
+        color: #fff;
+        font-size: 2rem;
+        text-shadow: 2px 2px #000;
+        text-transform: uppercase;
+        background-color: rgba(1, 66, 106, 0.4);
+
+        span {
+            font-size: 1rem; 
+            position: relative;
+            top: -5px;
+            text-shadow: 1px 1px #000;
+        }
+    }
+
+    .storyInfo {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: $colors_darkBlue;
+        color: #fff;
+        padding: 20px;
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            text-shadow: 2px 2px #000;
+        }
+
+        #prompt { font-size: 0.8rem; }
+        #storyError {
+            background-color: rgba(255, 0, 0, 0.3);
+            color: #ff2c2c;
+            text-shadow: 1px 1px #8b0000;
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: 40px;
+            padding-right: 30px;
+            text-align: right;
+            position: absolute;
+            top: -40px;
+            right: 0;
+            width: calc(100% - 60px);
+        }
+    }
+
+    #storyPlay {
+        position: absolute;
+        top: -40px;
+        right: 10px;
+        height: 30px;
+        border-color: transparent transparent transparent $colors_darkBlue;
+        transition: 100ms all ease;
+        will-change: border-width;
+        cursor: pointer;
+        border-style: solid;
+        border-width: 18px 0 18px 32px;
+        background: none;
+
+        &:hover { border-color: transparent transparent transparent $colors_lightBlue; }
+
+        &.pause {
+            border-style: double;
+            border-width: 0 0 0 24px;
+        }
+    }
+}
+
+#story.preview {
+    position: relative;
+    bottom: inherit;
+    width: 100%;
+    height: inherit;
+    min-height: 500px;
+    max-height: inherit;
+
+    #stakeholder {
+        padding-left: 40px;
+    }
+}
+
+
+@media screen and (min-width: 790px) {
+    #story.open { height: calc(100vh - 40px); }
+    #story {
+        width: 90%;
+        max-width: 600px;
+        margin-top: 40px;
+        margin-left: 20px;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+    
+        left: 50%;
+        transform: translate(-50%, 0);
+
+        .storyInfo { padding: 20px 40px; }
+    }
+
+    #story.preview {
+        width: 400px;
+        height: 560px;
+        max-height: inherit;
+    }
+}

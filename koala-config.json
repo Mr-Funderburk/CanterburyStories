@@ -3,6 +3,10 @@
 		{	
 			"src": "css/scss/",
 			"dest": "css/"
+		},
+		{	
+			"src": "css/scss_v2/",
+			"dest": "css/"
 		}
 	],
 

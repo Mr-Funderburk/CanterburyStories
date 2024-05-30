@@ -1,1 +1,94 @@
-*{margin:0;padding:0;border:0;font-size:100%;font-family:"Open Sans", sans-serif;text-decoration:none}*,*:before,*:after{-webkit-box-sizing:border-box;box-sizing:border-box}::-moz-selection{background:#0272B8;color:#FFF;text-shadow:none}::selection{background:#0272B8;color:#FFF;text-shadow:none}.clear{clear:both}.clearfix{clear:both}.clearfix:after{clear:both;content:"";display:table}a:hover,a:focus,div,input:focus{outline:none !important}body{background-color:#242629;color:#FFF;font-size:62.5%;font-weight:400}h1{font-size:1.8rem;font-family:"Raleway", sans-serif;font-weight:900;border-bottom:1px solid #FFF;padding:6px 32px;margin:16px;letter-spacing:1px;font-variant:small-caps;text-align:center}.attributions .attribution{font-size:1rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:30px 0;padding:10px;border-radius:8px;width:100%;text-wrap:nowrap;white-space:nowrap;overflow:hidden}.attributions .attribution h2{font-size:1.4rem;font-family:"Raleway", sans-serif;font-weight:300}.attributions .attribution p{margin-left:20px;color:#CCC;text-overflow:ellipsis}.attributions .attribution a:link,.attributions .attribution a:visited{font-size:0.8rem;color:#3D90C3;text-overflow:ellipsis}.attributions .attribution a:link:hover,.attributions .attribution a:link:focus,.attributions .attribution a:visited:hover,.attributions .attribution a:visited:focus{color:#b2d3e7}.attributions .attribution svg{width:40px;fill:#FFF;margin-right:20px}@media screen and (min-width: 800px){h1{font-size:3rem}.attributions{display:grid;grid-template-columns:auto auto}}@media screen and (min-width: 1200px){.attributions{grid-template-columns:auto auto auto}}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+::-moz-selection {
+  background: #0272B8;
+  color: #FFF;
+  text-shadow: none; }
+
+::selection {
+  background: #0272B8;
+  color: #FFF;
+  text-shadow: none; }
+
+.clear {
+  clear: both; }
+
+.clearfix {
+  clear: both; }
+
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: table; }
+
+a:hover, a:focus, div, input:focus {
+  outline: none !important; }
+
+body {
+  background-color: #242629;
+  color: #FFF;
+  font-size: 62.5%;
+  font-weight: 400; }
+
+h1 {
+  font-size: 1.8rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  border-bottom: 1px solid #FFF;
+  padding: 6px 32px;
+  margin: 16px;
+  letter-spacing: 1px;
+  font-variant: small-caps;
+  text-align: center; }
+
+.attributions .attribution {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  text-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden; }
+  .attributions .attribution h2 {
+    font-size: 1.4rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 300; }
+  .attributions .attribution p {
+    margin-left: 20px;
+    color: #CCC;
+    text-overflow: ellipsis; }
+  .attributions .attribution a:link, .attributions .attribution a:visited {
+    font-size: 0.8rem;
+    color: #3D90C3;
+    text-overflow: ellipsis; }
+    .attributions .attribution a:link:hover, .attributions .attribution a:link:focus, .attributions .attribution a:visited:hover, .attributions .attribution a:visited:focus {
+      color: #b2d3e7; }
+  .attributions .attribution svg {
+    width: 40px;
+    fill: #FFF;
+    margin-right: 20px; }
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 3rem; }
+
+  .attributions {
+    display: grid;
+    grid-template-columns: auto auto; } }
+@media screen and (min-width: 1200px) {
+  .attributions {
+    grid-template-columns: auto auto auto; } }
+
+/*# sourceMappingURL=attributions.css.map */

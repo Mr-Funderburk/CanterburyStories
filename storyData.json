@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Calle Raey",
+        "stakeholder": "Alumni",
+        "classof": "2016",
+        "image": "senior-portrait-female.webp",
+        "story": "2010_sarah_mitchell",
+        "prompt": "Teachers that changed my life..."
+    },
+
+    {
+        "name": "Stephen Funderburk",
+        "stakeholder": "Parent",
+        "classof": "",
+        "image": "senior-portrait-male.webp",
+        "story": "",
+        "prompt": "An experience I had at Canterbury that impacted who I am today was..."
+    }
+]

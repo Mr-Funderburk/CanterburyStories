@@ -1,0 +1,106 @@
+body {
+    background-color: $colors_veryDarkBlue;
+    font-size: 62.5%;
+    transition: background-color 0.3s ease-in-out;
+
+    &.recording { background-color: rgb(139, 17, 17); }
+}
+
+.storyOpen { 
+    filter: blur(5px); 
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.contentContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    transition: padding-left 0.3s ease-in-out;
+
+    .content, #stories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+
+        footer { 
+            align-self: flex-end; 
+            color: $colors_darkGray;
+            font-size: 0.8rem;
+            text-align: center;
+
+            a:link, a:visited, a:active { 
+                font-size: 0.8rem;
+                color: $colors_darkGray;
+                transition: color 0.3s ease-in-out;
+                &:hover, &:focus { color: $colors_lightGray; }
+            }
+        }
+    }
+}
+
+.flexbreak { flex-basis: 100%; height: 0; }
+
+.sidebarContainer #pinSidebar:checked ~ .contentContainer { padding-left: 300px; }
+footer { 
+    a:link, a:visited, a:active, label {
+        display: inline-block; 
+        color: $colors_darkGray;
+        transition: color 0.3s ease-in-out;
+        &:hover, &:focus { color: $colors_lightGray; cursor: pointer; }
+    }
+    p { line-height: 1.6rem; }
+    input, .disclaimer { display: none; }
+    input:checked ~ .disclaimer { display: block; }
+    .disclaimer {
+        text-align: left;
+        width: 80%;
+        border-top: 1px solid $colors_darkGray;
+        margin: 10px auto;
+
+        h6 { font-size: 0.9rem; margin-top: 20px; }
+        p { line-height: normal; }
+    }
+}
+
+.closeButton {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: $colors_darkBlue;
+    opacity: 0.4;
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover { opacity: 1; }
+    &::before, &::after {
+        position: absolute;
+        top: 3px;
+        left: 15px;
+        content: " ";
+        height: 25px;
+        width: 2px;
+        background-color: #FFF;
+    }
+
+    &::before { transform: rotate(45deg); }
+    &::after { transform: rotate(-45deg); }
+}
+
+.flex { display: flex; justify-content: space-between; align-items: center; }
+
+
+@media screen and (min-width: 780px) {
+    .contentContainer { padding-left: 60px; }
+    .disclaimer { padding: 0 20px; }
+}

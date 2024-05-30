@@ -1,0 +1,236 @@
+.radio {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 8px;
+    font-size: 0.8rem;
+
+    input {
+        margin: 0;
+        display: block;
+        width: 100%;
+        outline: none;
+        cursor: pointer;
+        background-color: $colors_darkBlue;
+        color: #fff;
+        border-top: 1px solid $colors_highlightBlue;
+        border-bottom: 1px solid #000;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover, &:focus { background-color: $colors_highlightBlue !important; }
+        &:checked { background-color: $colors_lightBlue; }
+
+        &::before {
+            content: attr(value);
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+        }
+        
+        &:first-child { border-radius: 6px 6px 0 0; }
+        &:last-child { border-radius: 0 0 6px 6px; }
+    }
+
+    &.radioHorizontal {
+        display: flex;
+        flex-direction: row;
+
+        input {
+            text-align: center;
+
+            &:first-child { border-radius: 6px 0 0 6px; }
+            &:last-child { border-radius: 0 6px 6px 0; }
+        }
+    }
+}
+
+input[type=text],
+input[type=number],
+input[type=email] {
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1rem;
+    padding: 8px 12px;
+    margin: 6px 0;
+    //border: 2px solid #fff;
+    border-top: 2px solid $colors_highlightBlue;
+    border-bottom: 2px solid #000;
+
+    &:focus { border: 2px solid $colors_lightBlue; }
+    &:hover { border-color: $colors_highlightBlue; }
+}
+
+.submitButton,
+.cancelButton {
+    display: block;
+    margin: 16px auto;
+    padding: 12px 32px;
+    font-size: 1rem;
+    background-color: #008000;
+    color: #aefeae;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+    &:hover, &:focus {
+        background-color: #00a000;
+        color: #004000;
+    }
+}
+
+.cancelButton { 
+    background-color: #666; 
+    color: #ddd;
+    &:hover, &:focus { background-color: #ccc; color: #333; }
+}
+
+.disabled { 
+    background-color: #666 !important; 
+    color: #ddd !important;
+    &:hover, &:focus { 
+        background-color: #666 !important; 
+        color: #ddd !important; 
+
+        svg { fill: #fff !important; }
+    }
+    cursor: default !important; 
+}
+
+.blueButton {
+    background-color: $colors_lightBlue;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    svg { 
+        fill: #fff; 
+        width: 20px; 
+        margin-right: 20px; 
+        transition: fill 0.3s ease-in-out;
+    }
+    &:hover, &:focus { background-color: $colors_highlightBlue; color: $colors_darkBlue; }
+    &:hover svg, &:focus svg { fill: $colors_darkBlue; }
+}
+
+.uploadContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .fileDropArea {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 25px;
+        background-color: #fff;
+        border-top: 2px solid $colors_highlightBlue;
+        border-bottom: 2px solid #000;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        margin-top: 15px;
+
+        &.active { background-color: $colors_highlightBlue; }
+        &.error { background-color: #fcc; }
+
+        .chooseBtn {
+            flex-shrink: 0;
+            background-color: $colors_darkBlue;
+            color: #fff;
+            border-radius: 3px;
+            padding: 8px 15px;
+            margin-right: 10px;
+            font-size: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        &:hover .chooseBtn, &:focus .chooseBtn { background-color: $colors_lightBlue; }
+
+        .dropMsg {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            opacity: 0;
+
+            &:focus { outline: none; }
+        }
+
+        .deleteFile {
+            display: none;
+            position: absolute;
+            right: 15px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                transition: 0.3s;
+                top: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23bac1cb' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 438.5 438.5'%3e%3cpath d='M417.7 75.7A8.9 8.9 0 00411 73H323l-20-47.7c-2.8-7-8-13-15.4-18S272.5 0 264.9 0h-91.3C166 0 158.5 2.5 151 7.4c-7.4 5-12.5 11-15.4 18l-20 47.7H27.4a9 9 0 00-6.6 2.6 9 9 0 00-2.5 6.5v18.3c0 2.7.8 4.8 2.5 6.6a8.9 8.9 0 006.6 2.5h27.4v271.8c0 15.8 4.5 29.3 13.4 40.4a40.2 40.2 0 0032.3 16.7H338c12.6 0 23.4-5.7 32.3-17.2a64.8 64.8 0 0013.4-41V109.6h27.4c2.7 0 4.9-.8 6.6-2.5a8.9 8.9 0 002.6-6.6V82.2a9 9 0 00-2.6-6.5zm-248.4-36a8 8 0 014.9-3.2h90.5a8 8 0 014.8 3.2L283.2 73H155.3l14-33.4zm177.9 340.6a32.4 32.4 0 01-6.2 19.3c-1.4 1.6-2.4 2.4-3 2.4H100.5c-.6 0-1.6-.8-3-2.4a32.5 32.5 0 01-6.1-19.3V109.6h255.8v270.7z'/%3e%3cpath d='M137 347.2h18.3c2.7 0 4.9-.9 6.6-2.6a9 9 0 002.5-6.6V173.6a9 9 0 00-2.5-6.6 8.9 8.9 0 00-6.6-2.6H137c-2.6 0-4.8.9-6.5 2.6a8.9 8.9 0 00-2.6 6.6V338c0 2.7.9 4.9 2.6 6.6a8.9 8.9 0 006.5 2.6zM210.1 347.2h18.3a8.9 8.9 0 009.1-9.1V173.5c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a8.9 8.9 0 00-9.1 9.1V338a8.9 8.9 0 009.1 9.1zM283.2 347.2h18.3c2.7 0 4.8-.9 6.6-2.6a8.9 8.9 0 002.5-6.6V173.6c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a9 9 0 00-6.6 2.6 8.9 8.9 0 00-2.5 6.6V338a9 9 0 002.5 6.6 9 9 0 006.6 2.6z'/%3e%3c/svg%3e");
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                opacity: 0;
+                left: 50%;
+                top: 50%;
+                width: 100%;
+                height: 100%;
+                transform: translate(-50%, -50%) scale(0);
+                background-color: $colors_highlightBlue;
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+
+            &:hover::after {
+                transform: translate(-50%, -50%) scale(2.2);
+                opacity: 1;
+            }
+
+            &:hover::before {
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%234f555f' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 438.5 438.5'%3e%3cpath d='M417.7 75.7A8.9 8.9 0 00411 73H323l-20-47.7c-2.8-7-8-13-15.4-18S272.5 0 264.9 0h-91.3C166 0 158.5 2.5 151 7.4c-7.4 5-12.5 11-15.4 18l-20 47.7H27.4a9 9 0 00-6.6 2.6 9 9 0 00-2.5 6.5v18.3c0 2.7.8 4.8 2.5 6.6a8.9 8.9 0 006.6 2.5h27.4v271.8c0 15.8 4.5 29.3 13.4 40.4a40.2 40.2 0 0032.3 16.7H338c12.6 0 23.4-5.7 32.3-17.2a64.8 64.8 0 0013.4-41V109.6h27.4c2.7 0 4.9-.8 6.6-2.5a8.9 8.9 0 002.6-6.6V82.2a9 9 0 00-2.6-6.5zm-248.4-36a8 8 0 014.9-3.2h90.5a8 8 0 014.8 3.2L283.2 73H155.3l14-33.4zm177.9 340.6a32.4 32.4 0 01-6.2 19.3c-1.4 1.6-2.4 2.4-3 2.4H100.5c-.6 0-1.6-.8-3-2.4a32.5 32.5 0 01-6.1-19.3V109.6h255.8v270.7z'/%3e%3cpath d='M137 347.2h18.3c2.7 0 4.9-.9 6.6-2.6a9 9 0 002.5-6.6V173.6a9 9 0 00-2.5-6.6 8.9 8.9 0 00-6.6-2.6H137c-2.6 0-4.8.9-6.5 2.6a8.9 8.9 0 00-2.6 6.6V338c0 2.7.9 4.9 2.6 6.6a8.9 8.9 0 006.5 2.6zM210.1 347.2h18.3a8.9 8.9 0 009.1-9.1V173.5c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a8.9 8.9 0 00-9.1 9.1V338a8.9 8.9 0 009.1 9.1zM283.2 347.2h18.3c2.7 0 4.8-.9 6.6-2.6a8.9 8.9 0 002.5-6.6V173.6c0-2.7-.8-4.9-2.5-6.6a8.9 8.9 0 00-6.6-2.6h-18.3a9 9 0 00-6.6 2.6 8.9 8.9 0 00-2.5 6.6V338a9 9 0 002.5 6.6 9 9 0 006.6 2.6z'/%3e%3c/svg%3e");
+            }
+        }
+
+        .uploadError {
+            display: none;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #800;
+            position: absolute;
+            bottom: 5px;
+        }
+    }
+}
+
+.errorText {
+    display: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fcc;
+}
+
+
+@media screen and (min-width: 790px) {
+    .uploadContainer .fileDropArea { width: 80%; }
+}

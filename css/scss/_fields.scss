@@ -187,9 +187,7 @@
         border-radius: 8px;
         margin-top: 64px;
 
-        &:hover, &:focus {
-            background-color: $colors_highlightBlue;
-        }
+        &:hover, &:focus { background-color: $colors_highlightBlue; }
     }
 
     .radio { font-size: 1rem; }
